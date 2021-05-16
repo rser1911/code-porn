@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Courier-Bold10
+enscript --style=a1is --color -f Courier10 -B -1 --highlight=c -h -o $1.ps $1 
+# convert -density 200 $1.ps $1.jpg
+gs -sDEVICE=jpeg -sPAPERSIZE=a4 -dJPEGQ=100 -r400 -dBATCH -dNOPAUSE -sOutputFile=$1.jpg $1.ps
+convert $1.jpg -resize 50% -bordercolor white -flatten -trim -border 50x75 -bordercolor black -border 3 -negate $1.jpg.jpg
+convert $1.jpg.jpg -font Courier -pointsize 30 -fill "#261226" -gravity SouthEast -stroke "#261226" -strokewidth 1  -annotate +47+12 '#code #porn' $1.jpg
+rm $1.ps $1.jpg.jpg
+
+
